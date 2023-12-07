@@ -9,6 +9,11 @@ import Home from './pages/Home';
 import Team from './pages/Team';
 import NewTeam from './pages/NewTeam';
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
