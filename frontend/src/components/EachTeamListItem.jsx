@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import { Avatar, Icon, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
-import LanguageIcon from '@mui/icons-material/Language';
+import { Avatar, Button, Icon, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
+import { DeleteForever, Edit, Language } from '@mui/icons-material/';
 
 function EachTeamListItem(team, index) {
   const { id, name, website, crestUrl } = team;
@@ -9,37 +8,38 @@ function EachTeamListItem(team, index) {
   const backgroundColor = index % 2 !== 0 ? 'text.disabled' : 'text.primary';
 
   return (
-    <ListItem sx={{ bgcolor: backgroundColor, grid: '2fr' }}>
+    <ListItem key={id} sx={{ bgcolor: backgroundColor, alignItems: 'center' }}>
       <ListItemAvatar>
         <Avatar src={crestUrl} />
       </ListItemAvatar>
-      <ListItemText primary={name} />
-      <Icon>
-        <LanguageIcon />
-      </Icon>
+      <ListItemText primary={name} sx={{ width: '60%', minWidth: 'content' }} />
+      <div className="flex grow justify-between gap-2">
+        <Button>
+          <Link
+            to={website}
+            target="_blank"
+            rel="noreferrer"
+            title={`Visit ${website.split('//').slice(1)}`}
+            className="absolute w-full h-full"
+          />
+          <Icon>
+            <Language sx={{ verticalAlign: 'top' }} />
+          </Icon>
+        </Button>
+        <Button variant="outlined" color="success">
+          <Link to={`/${id}`} title="Edit" className="absolute w-full h-full" />
+          <Icon>
+            <Edit sx={{ verticalAlign: 'top' }} />
+          </Icon>
+        </Button>
+        <Button variant="outlined" color="error">
+          <Icon>
+            <DeleteForever sx={{ verticalAlign: 'top' }} />
+          </Icon>
+        </Button>
+      </div>
     </ListItem>
   );
 }
-
-/* <li key={id} className="grid grid-cols-[3fr,2fr] border-b py-2">
-      <span className="font-bold tracking-wider">{name}</span>
-      <div className="flex items-end justify-between ">
-        <Button>
-          <a
-            href={website}
-            target="_blank"
-            rel="noreferrer"
-            className="text-xs hover:text-sky-600 transition-colors">
-            Website
-          </a>
-        </Button>
-
-        <Button>
-          <Link to={`/${id}`} className="hover:text-sky-600 transition-colors">
-            Ver equipo
-          </Link>
-        </Button>
-      </div>
-    </li> */
 
 export default EachTeamListItem;
