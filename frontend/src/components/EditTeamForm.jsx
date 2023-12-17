@@ -15,16 +15,17 @@ function InputElement({ name, placeholder, text, type = 'text' }) {
   );
 }
 
-function EditTeamForm({ data, handleSubmit, toggleEdit }) {
+function EditTeamForm({ team, handleSubmit, toggleEdit }) {
+  const { name, tla, founded, clubColors, venue, address, phone } = team;
   return (
     <form className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
-      <InputElement name="name" placeholder={data.name} text="Nuevo nombre del equipo:" />
-      <InputElement name="tla" placeholder={data.tla} text="Abreviatura del equipo:" />
-      <InputElement name="founded" placeholder={data.founded} text="Año fundación del club:" />
-      <InputElement name="clubColors" placeholder={data.clubColors} text="Colores del equipo:" />
-      <InputElement name="venue" placeholder={data.venue} text="Nuevo nombre del estadio:" />
-      <InputElement name="address" placeholder={data.address} text="Dirección:" />
-      <InputElement name="phone" placeholder={data.phone} text="Teléfono:" />
+      <InputElement name="name" placeholder={name} text="Nuevo nombre del equipo:" />
+      <InputElement name="tla" placeholder={tla} text="Abreviatura del equipo:" />
+      <InputElement name="founded" placeholder={founded} text="Año fundación del club:" />
+      <InputElement name="clubColors" placeholder={clubColors} text="Colores del equipo:" />
+      <InputElement name="venue" placeholder={venue} text="Nuevo nombre del estadio:" />
+      <InputElement name="address" placeholder={address} text="Dirección:" />
+      <InputElement name="phone" placeholder={phone} text="Teléfono:" />
       <InputElement name="file" text="Nuevo logo del club:" type="file" />
       <input
         type="submit"

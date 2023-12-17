@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
-function TeamData({ data, navigate, toggleEdit, isDeleting, toggleDelete }) {
-  const { id, name, founded, clubColors, venue, address, phone, tla } = data;
+import { Box, Button, Card, Container, List, ListItem, ListItemText } from '@mui/material';
+
+function TeamData({ team, navigate, toggleEdit, isDeleting, toggleDelete }) {
+  const { id, name, founded, clubColors, venue, address, phone, tla } = team;
 
   const deleteTeam = () => {
     fetch(`http://localhost:8080/${id}`, { method: 'DELETE' }).then(() => {
@@ -9,12 +11,22 @@ function TeamData({ data, navigate, toggleEdit, isDeleting, toggleDelete }) {
   };
 
   const info = (dataInfo) => {
-    return <b>{dataInfo || 'Sin información'}</b>;
+    return dataInfo || 'Sin información';
+  };
+
+  const listItem = (text, data) => {
+    return (
+      <ListItem
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', color: 'whitesmoke' }}>
+        <ListItemText secondary={text} secondaryTypographyProps={{ color: 'gray' }} />
+        <ListItemText primary={data} />
+      </ListItem>
+    );
   };
 
   return (
-    <>
-      {isDeleting && (
+    <Container>
+      {/* {isDeleting && (
         <div className="fixed flex items-center justify-center top-0 z-50 h-screen w-screen bg-black/75">
           <div className="h-36 w-80 flex flex-col items-center justify-center rounded bg-black/90">
             Really want to delete??
@@ -34,26 +46,28 @@ function TeamData({ data, navigate, toggleEdit, isDeleting, toggleDelete }) {
             </div>
           </div>
         </div>
-      )}
-      <span>Fundado en: {info(founded)}</span>
-      <span>Abreviatura: {info(tla)}</span>
-      <span>Colores del club: {info(clubColors)}</span>
-      <span>Nombre del estadio: {info(venue)}</span>
-      <span>Dirección: {info(address)}</span>
-      <span>Telefono: {info(phone)}</span>
-      <button
-        type="button"
-        className="w-1/2 transition border hover:bg-black/50"
-        onClick={toggleEdit}>
-        Editar equipo
-      </button>
-      <button
-        type="button"
-        onClick={toggleDelete}
-        className="w-1/2 transition border hover:bg-black/50">
-        Eliminar equipo
-      </button>
-    </>
+      )} */}
+
+      <Card variant="outlined" sx={{ backgroundColor: 'rgba(0,0,0,0.3)', borderColor: 'gray' }}>
+        <List sx={{ maxWidth: '90%', margin: 'auto' }}>
+          {listItem(`Fundado en:`, info(founded))}
+          {listItem(`Abreviatura:`, info(tla))}
+          {listItem(`Colores del club:`, info(clubColors))}
+          {listItem(`Nombre del estadio:`, info(venue))}
+          {listItem(`Dirección:`, info(address))}
+          {listItem(`Telefono:`, info(phone))}
+        </List>
+      </Card>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4, mt: 4, mb: 1 }}>
+        <Button onClick={toggleEdit} variant="outlined">
+          Editar equipo
+        </Button>
+        <Button onClick={toggleDelete} variant="outlined" color="error">
+          Eliminar equipo
+        </Button>
+      </Box>
+    </Container>
   );
 }
 

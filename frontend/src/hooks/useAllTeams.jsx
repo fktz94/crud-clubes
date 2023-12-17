@@ -6,7 +6,7 @@ export default function useAllTeams() {
 
   const fakeRest = () =>
     new Promise((res) => {
-      setTimeout(res, 3000);
+      setTimeout(res, 300);
     });
 
   useEffect(() => {

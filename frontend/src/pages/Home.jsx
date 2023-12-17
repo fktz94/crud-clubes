@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
+import { Box, CircularProgress } from '@mui/material';
 import TeamsTable from '../components/TeamTable';
 import useAllTeams from '../hooks/useAllTeams';
-import { Box, CircularProgress } from '@mui/material';
 
 function Home() {
   // const location = useLocation();
