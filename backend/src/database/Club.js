@@ -64,7 +64,7 @@ const createNewClub = (newClub) => {
 
 const updateOneClub = (clubId, changes) => {
   const indexForUpdated = DB.clubs.findIndex((club) => club.id === +clubId);
-  console.log(changes);
+
   if (indexForUpdated === -1) {
     throw {
       status: 400,

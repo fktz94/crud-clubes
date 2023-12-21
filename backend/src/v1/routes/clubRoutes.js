@@ -11,9 +11,9 @@ router
 
   .get('/:clubId', clubController.getOneClub)
 
-  .post('/', upload.single('file'), clubController.createNewClub)
+  .post('/', upload.single('crestUrl'), clubController.createNewClub)
 
-  .patch('/:clubId', upload.single('file'), clubController.updateOneClub)
+  .patch('/:clubId', upload.single('crestUrl'), clubController.updateOneClub)
 
   .delete('/:clubId', clubController.deleteOneClub);
 
