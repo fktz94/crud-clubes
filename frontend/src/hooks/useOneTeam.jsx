@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import handleInputVerification from '../../utils/handleInputVerification';
 import handleSubmitVerification from '../../utils/handleSubmitVerification';
@@ -7,10 +7,15 @@ import stateToFormData from '../../utils/stateToFormData';
 export default function useOneTeam() {
   const { id } = useParams();
   const [team, setTeam] = useState();
-  const [rerun, setRerun] = useState(false);
-  const [isEditing, setIsEditing] = useState(true);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
   const navigate = useNavigate();
+
+  const fakeRest = () =>
+    new Promise((res) => {
+      setTimeout(res, 300);
+    });
 
   const [formData, setFormData] = useState({
     name: '',
@@ -50,10 +55,8 @@ export default function useOneTeam() {
       nativeEvent: { data }
     } = e;
 
-    if (!handleInputVerification(name, data, value, files, setError, setSuccess, setFormData))
-      return;
+    if (!handleInputVerification(name, data, value, setError, setSuccess)) return;
 
-    // CONTROLLED COMPONENTS
     if (name === 'tla') {
       setFormData((prev) => {
         return { ...prev, [name]: value.toUpperCase() };
@@ -70,26 +73,49 @@ export default function useOneTeam() {
     setIsEditing(!isEditing);
   };
 
-  const patchData = (data) => {
-    fetch(`http://localhost:8080/api/v1/clubs/${team.id}`, {
-      method: 'PATCH',
-      body: data
-    }).then(() => {
-      setIsEditing(!isEditing);
-      setRerun(true);
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const toggleUpdate = (e) => {
     e.preventDefault();
+    if (e.target.id === 'cancel-update') {
+      setIsUpdating(false);
+      return;
+    }
 
     if (handleSubmitVerification(formData, setError)) return;
 
     if (Object.values(error).filter((item) => item).length > 0) return;
     if (Object.values(formData).filter((item) => item).length === 0) return;
+    setIsUpdating(true);
+  };
 
+  const fetchTeam = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      await fakeRest();
+      const fetchedTeam = await fetch(`http://localhost:8080/api/v1/clubs/${id}`);
+      const json = await fetchedTeam.json();
+      setTeam(json.data);
+    } catch (err) {
+      throw new Error(err.message || 'Team not found');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [id]);
+
+  const patchData = (data) => {
+    fetch(`http://localhost:8080/api/v1/clubs/${team.id}`, {
+      method: 'PATCH',
+      body: data
+    }).then(() => {
+      setIsEditing(false);
+      setIsUpdating(false);
+      fetchTeam();
+    });
+  };
+
+  const handleSubmit = () => {
     patchData(stateToFormData(formData));
 
+    setIsEditing(false);
     setFormData({
       name: '',
       tla: '',
@@ -101,10 +127,6 @@ export default function useOneTeam() {
     });
   };
 
-  const toggleDelete = () => {
-    setIsDeleting(!isDeleting);
-  };
-
   const handleDeleteFile = () => {
     setFormData((prev) => {
       return { ...prev, crestUrl: undefined };
@@ -112,18 +134,8 @@ export default function useOneTeam() {
   };
 
   useEffect(() => {
-    (async () => {
-      try {
-        const fetchedTeam = await fetch(`http://localhost:8080/api/v1/clubs/${id}`);
-        const json = await fetchedTeam.json();
-        setTeam(json.data);
-      } catch (error) {
-        throw new Error(error.message || 'Team not found');
-      } finally {
-        setRerun(false);
-      }
-    })();
-  }, [id, rerun]);
+    fetchTeam();
+  }, [fetchTeam]);
 
   const imgSrc = team?.crestUrl?.includes('http')
     ? team?.crestUrl
@@ -138,15 +150,16 @@ export default function useOneTeam() {
     team,
     navigate,
     toggleEdit,
-    isDeleting,
     isEditing,
-    toggleDelete,
     handleSubmit,
     image,
     formData,
     handleInput,
     error,
     success,
-    handleDeleteFile
+    handleDeleteFile,
+    toggleUpdate,
+    isUpdating,
+    isLoading
   };
 }

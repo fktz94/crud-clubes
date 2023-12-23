@@ -1,36 +1,32 @@
-export default function handleInputVerification(
-  name,
-  data,
-  value,
-  files,
-  setError,
-  setSuccess,
-  setFormData
-) {
+export default function handleInputVerification(name, data, value, setError, setSuccess) {
   if (value === ' ' || (value.split('').slice(-2)[0] === ' ' && data === ' ')) return false;
 
   // CLUB FOUNDATION YEAR verification
-  if (name === 'founded' && data && (!data.match(/[\d]/) || value.length > 4)) return false;
+  if (name === 'founded' && data && (!data.match(/[\d]/) || value.length > 4)) {
+    return false;
+  }
+
   if (
     name === 'founded' &&
     value.length === 4 &&
     (value < 1800 || value > new Date().getFullYear())
   ) {
     setError((prev) => {
-      return { ...prev, founded: `Debe ingresar un año entre 1800 y  ${new Date().getFullYear()}` };
+      return { ...prev, [name]: `Debe ingresar un año entre 1800 y  ${new Date().getFullYear()}` };
     });
   } else if (name === 'founded') {
     setError((prev) => {
-      return { ...prev, founded: '' };
+      return { ...prev, [name]: '' };
     });
   }
+
   if (name === 'founded' && value.length === 4) {
     setSuccess((prev) => {
-      return { ...prev, founded: true };
+      return { ...prev, [name]: true };
     });
   } else if (name === 'founded') {
     setSuccess((prev) => {
-      return { ...prev, founded: false };
+      return { ...prev, [name]: false };
     });
   }
 
@@ -39,11 +35,11 @@ export default function handleInputVerification(
 
   if (name === 'tla' && value.length === 3) {
     setSuccess((prev) => {
-      return { ...prev, tla: true };
+      return { ...prev, [name]: true };
     });
   } else if (name === 'tla') {
     setSuccess((prev) => {
-      return { ...prev, tla: false };
+      return { ...prev, [name]: false };
     });
   }
 
@@ -61,7 +57,7 @@ export default function handleInputVerification(
 
   if (name === 'phone') {
     setError((prev) => {
-      return { ...prev, phone: '' };
+      return { ...prev, [name]: '' };
     });
   }
   return true;

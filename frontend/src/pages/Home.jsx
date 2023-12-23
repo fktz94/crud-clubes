@@ -6,7 +6,7 @@ import useAllTeams from '../hooks/useAllTeams';
 function Home() {
   // const location = useLocation();
   // const [deletedTeam, setDeletedTeam] = useState(false);
-  const { isLoading, teams } = useAllTeams();
+  const { isLoading, teams, fetchTeams } = useAllTeams();
   // useEffect(() => {
   // if (location.state?.name) {
   //   setDeletedTeam(true);
@@ -26,9 +26,9 @@ function Home() {
           <CircularProgress color="inherit" />
         </Box>
       )}
-      {teams && (
+      {teams && !isLoading && (
         <section className="flex flex-col gap-4 m-auto max-w-2xl">
-          <TeamsTable teams={teams} />
+          <TeamsTable teams={teams} fetchTeams={fetchTeams} />
         </section>
 
         //   {deletedTeam && (

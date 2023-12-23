@@ -1,6 +1,16 @@
 /* eslint-disable react/prop-types */
-
-import { Box, Button, Container, Icon, Stack, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  Icon,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 import { CloudUpload, DeleteForever } from '@mui/icons-material';
 
 function FileInputElement({ formData, handleDeleteFile, handleInput, name }) {
@@ -62,10 +72,11 @@ function EditTeamForm({
   formData,
   error,
   success,
-  handleDeleteFile
+  handleDeleteFile,
+  toggleUpdate,
+  isUpdating
 }) {
   const { name, tla, founded, clubColors, venue, address, phone } = team;
-
   const properties = [
     {
       name: 'name',
@@ -113,8 +124,29 @@ function EditTeamForm({
           margin: 'auto',
           backgroundColor: 'rgba(0,0,0,0.1)',
           padding: 2
-        }}
-        onSubmit={handleSubmit}>
+        }}>
+        <Dialog
+          open={isUpdating}
+          PaperProps={{
+            style: { color: 'ghostwhite', backgroundColor: 'rgba(0,0,0,0.97)', padding: 10 }
+          }}
+          onClose={() => {}}>
+          <DialogTitle id="alert-dialog-title">¿Desea realizar los cambios?</DialogTitle>
+          <DialogActions sx={{ margin: 'auto' }}>
+            <Button variant="outlined" color="success" onClick={handleSubmit}>
+              Aceptar
+            </Button>
+            <Button
+              variant="outlined"
+              id="cancel-update"
+              color="error"
+              onClick={toggleUpdate}
+              autoFocus>
+              Cancelar
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <Stack spacing={2} mb={2}>
           {properties.map(({ name: propertyName, placeholder, text }) => {
             return (
@@ -140,7 +172,7 @@ function EditTeamForm({
         </Stack>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4, mt: 4, mb: 1 }}>
-          <Button variant="outlined" color="success" type="submit">
+          <Button variant="outlined" color="success" onClick={toggleUpdate}>
             Enviar
           </Button>
           <Button variant="outlined" color="warning" onClick={toggleEdit}>

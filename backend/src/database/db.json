@@ -1,42 +1,23 @@
 {
   "clubs": [
     {
-      "id": 57,
-      "area": {
-        "id": 2072,
-        "name": "England"
-      },
-      "name": "Arsenal FC",
-      "shortName": "Arsenal",
-      "tla": "ARS",
-      "crestUrl": "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg",
-      "address": "75 Drayton Park London N5 1BU",
-      "phone": "+44 (020) 76195003",
-      "website": "http://www.arsenal.com",
-      "email": "info@arsenal.co.uk",
-      "founded": 1886,
-      "clubColors": "Red / White",
-      "venue": "Emirates Stadium",
-      "lastUpdated": "2020-05-14T02:41:34Z"
-    },
-    {
       "id": 58,
       "area": {
         "id": 2072,
         "name": "England"
       },
-      "name": "Aston Villa FC",
+      "name": "yeaaaae",
       "shortName": "Aston Villa",
       "tla": "AST",
-      "crestUrl": "uploads\\img\\79baa97624a1780c767181e0bb760845",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/de/9/9f/Aston_Villa_logo.svg",
       "address": "Villa Park Birmingham B6 6HE",
-      "phone": "+12312312312",
+      "phone": "+44 (0121) 3272299",
       "website": "http://www.avfc.co.uk",
       "email": null,
-      "founded": 1872,
-      "clubColors": "hrugiisdogjsodfjgosd",
-      "venue": "234132",
-      "lastUpdated": "2023-12-20T18:44:34.430Z"
+      "founded": 2023,
+      "clubColors": "red",
+      "venue": "Villa Park",
+      "lastUpdated": "2023-12-23T16:58:11.257Z"
     },
     {
       "id": 61,
@@ -54,8 +35,8 @@
       "email": null,
       "founded": 1905,
       "clubColors": "Royal Blue / White",
-      "venue": "sad",
-      "lastUpdated": "2023-12-21T14:35:57.113Z"
+      "venue": "Stamford Bridge",
+      "lastUpdated": "2020-05-14T02:41:41Z"
     },
     {
       "id": 62,

@@ -25,7 +25,12 @@ const updatedClubSchema = z.object({
   phone: z.string().optional(),
   website: z.string().url().optional(),
   email: z.string().email().optional(),
-  founded: z.number().int().min(1800).max(2024).optional(),
+  founded: z.coerce
+    .number()
+    .int()
+    .min(1800)
+    .max(new Date().getFullYear())
+    .optional(),
   clubColors: z.string().optional(),
   venue: z.string().optional(),
 });
