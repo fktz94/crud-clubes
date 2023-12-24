@@ -60,5 +60,11 @@ export default function handleInputVerification(name, data, value, setError, set
       return { ...prev, [name]: '' };
     });
   }
+
+  if (name === 'name') {
+    setError((prev) => {
+      return { ...prev, [name]: '' };
+    });
+  }
   return true;
 }

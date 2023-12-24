@@ -129,11 +129,14 @@ function EditTeamForm({
           open={isUpdating}
           PaperProps={{
             style: { color: 'ghostwhite', backgroundColor: 'rgba(0,0,0,0.97)', padding: 10 }
-          }}
-          onClose={() => {}}>
+          }}>
           <DialogTitle id="alert-dialog-title">¿Desea realizar los cambios?</DialogTitle>
           <DialogActions sx={{ margin: 'auto' }}>
-            <Button variant="outlined" color="success" onClick={handleSubmit}>
+            <Button
+              variant="outlined"
+              id="update-new-team"
+              color="success"
+              onClick={(e) => handleSubmit(e)}>
               Aceptar
             </Button>
             <Button

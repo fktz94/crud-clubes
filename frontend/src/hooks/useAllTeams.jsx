@@ -30,7 +30,7 @@ export default function useAllTeams() {
       throw new Error(error.message || 'data not found');
     } finally {
       setIsLoading(false);
-      setTimeout(handleCloseDeletedTeamAlert, 3000);
+      setTimeout(handleCloseDeletedTeamAlert, 1500);
     }
   }, []);
 
@@ -39,7 +39,7 @@ export default function useAllTeams() {
 
     fetchTeams();
 
-    setTimeout(handleCloseDeletedTeamAlert, 3000);
+    setTimeout(handleCloseDeletedTeamAlert, 1500);
 
     return () => window.history.replaceState({}, document.title);
   }, [fetchTeams, location.state]);

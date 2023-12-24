@@ -54,19 +54,21 @@ function EachTeamListItem({ team, index, fetchTeams, handleDeletedTeam }) {
           <Avatar src={crestUrl} />
         </ListItemAvatar>
         <ListItemText primary={name} sx={{ width: '60%', minWidth: 'content' }} />
-        <div className="flex grow justify-between gap-2">
-          <Button>
-            <Link
-              to={website}
-              target="_blank"
-              rel="noreferrer"
-              title={`Visit ${website.split('//').slice(1)}`}
-              className="absolute w-full h-full"
-            />
-            <Icon>
-              <Language sx={{ verticalAlign: 'top' }} />
-            </Icon>
-          </Button>
+        <div className="flex grow justify-end gap-2">
+          {website && (
+            <Button>
+              <Link
+                to={website}
+                target="_blank"
+                rel="noreferrer"
+                title={`Visit ${website.split('//').slice(1)}`}
+                className="absolute w-full h-full"
+              />
+              <Icon>
+                <Language sx={{ verticalAlign: 'top' }} />
+              </Icon>
+            </Button>
+          )}
           <Button variant="outlined" title="Edit team" color="success">
             <Link to={`/${id}`} className="absolute w-full h-full" />
             <Icon>

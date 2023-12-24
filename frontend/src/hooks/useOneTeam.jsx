@@ -79,8 +79,9 @@ export default function useOneTeam() {
       setIsUpdating(false);
       return;
     }
+    const isCreating = e.target.id === 'isCreating';
 
-    if (handleSubmitVerification(formData, setError)) return;
+    if (handleSubmitVerification(formData, setError, isCreating)) return;
 
     if (Object.values(error).filter((item) => item).length > 0) return;
     if (Object.values(formData).filter((item) => item).length === 0) return;
@@ -88,16 +89,18 @@ export default function useOneTeam() {
   };
 
   const fetchTeam = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      await fakeRest();
-      const fetchedTeam = await fetch(`http://localhost:8080/api/v1/clubs/${id}`);
-      const json = await fetchedTeam.json();
-      setTeam(json.data);
-    } catch (err) {
-      throw new Error(err.message || 'Team not found');
-    } finally {
-      setIsLoading(false);
+    if (id) {
+      try {
+        setIsLoading(true);
+        await fakeRest();
+        const fetchedTeam = await fetch(`http://localhost:8080/api/v1/clubs/${id}`);
+        const json = await fetchedTeam.json();
+        setTeam(json.data);
+      } catch (err) {
+        throw new Error(err.message || 'Team not found');
+      } finally {
+        setIsLoading(false);
+      }
     }
   }, [id]);
 
@@ -112,8 +115,21 @@ export default function useOneTeam() {
     });
   };
 
-  const handleSubmit = () => {
-    patchData(stateToFormData(formData));
+  const postData = (data) => {
+    fetch('http://localhost:8080/api/v1/clubs/', {
+      method: 'post',
+      body: data
+    })
+      .then((res) => res.json())
+      .then((json) => navigate(`/${json.data.id}`));
+  };
+
+  const handleSubmit = (e) => {
+    if (e.target.id === 'create-new-team') {
+      postData(stateToFormData(formData));
+    } else if (e.target.id === 'update-new-team') {
+      patchData(stateToFormData(formData));
+    }
 
     setIsEditing(false);
     setFormData({

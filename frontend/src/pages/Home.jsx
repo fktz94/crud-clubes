@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Alert, Box, CircularProgress, Dialog } from '@mui/material';
+import { Alert, Box, Button, CircularProgress, Dialog, Typography } from '@mui/material';
 import TeamsTable from '../components/TeamTable';
 import useAllTeams from '../hooks/useAllTeams';
 
@@ -13,7 +13,7 @@ function Home() {
     handleCloseDeletedTeamAlert
   } = useAllTeams();
 
-  // const teamsQuantity = teams?.length;
+  const teamsQuantity = teams?.length;
 
   return (
     <>
@@ -29,19 +29,31 @@ function Home() {
             onClose={handleCloseDeletedTeamAlert}>{`${deletedTeam} ha sido eliminado`}</Alert>
         </Dialog>
       )}
-      {teams && !isLoading && (
-        <section className="flex flex-col gap-4 m-auto max-w-2xl">
-          <TeamsTable teams={teams} fetchTeams={fetchTeams} handleDeletedTeam={handleDeletedTeam} />
-        </section>
 
-        //   <div className="flex justify-between">
-        //     <h4>
-        //       Hay <b>{teamsQuantity}</b> equipos
-        //     </h4>
-        //     <Link to="/new-team" className="px-2 transition border hover:bg-black/50">
-        //       Agregar un nuevo equipo
-        //     </Link>
-        //   </div>
+      {teams && !isLoading && (
+        <>
+          <Box display="flex" marginBlock={2} justifyContent="space-between">
+            {!teamsQuantity ? (
+              <Typography component="h4" alignSelf="center">
+                No hay equipos
+              </Typography>
+            ) : (
+              <Typography component="h4" alignSelf="center">
+                Hay <b>{teamsQuantity}</b> {teamsQuantity === 1 ? 'equipo' : 'equipos'}
+              </Typography>
+            )}
+            <Button variant="outlined">
+              <Link to="/new-team">Agregar un nuevo equipo</Link>
+            </Button>
+          </Box>
+          <section className="flex flex-col gap-4 m-auto max-w-2xl">
+            <TeamsTable
+              teams={teams}
+              fetchTeams={fetchTeams}
+              handleDeletedTeam={handleDeletedTeam}
+            />
+          </section>
+        </>
       )}
     </>
   );
