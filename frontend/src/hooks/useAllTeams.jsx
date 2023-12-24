@@ -3,11 +3,18 @@ import { useCallback, useEffect, useState } from 'react';
 export default function useAllTeams() {
   const [teams, setTeams] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [deletedTeam, setDeletedTeam] = useState(undefined);
 
   const fakeRest = () =>
     new Promise((res) => {
       setTimeout(res, 300);
     });
+
+  const handleDeletedTeam = useCallback((team) => {
+    setDeletedTeam(team);
+  }, []);
+
+  const handleCloseDeletedTeamAlert = () => setDeletedTeam();
 
   const fetchTeams = useCallback(async () => {
     try {
@@ -20,6 +27,7 @@ export default function useAllTeams() {
       throw new Error(error.message || 'data not found');
     } finally {
       setIsLoading(false);
+      setTimeout(handleCloseDeletedTeamAlert, 4000);
     }
   }, []);
 
@@ -27,5 +35,12 @@ export default function useAllTeams() {
     fetchTeams();
   }, [fetchTeams]);
 
-  return { isLoading, teams, fetchTeams };
+  return {
+    isLoading,
+    teams,
+    fetchTeams,
+    handleDeletedTeam,
+    deletedTeam,
+    handleCloseDeletedTeamAlert
+  };
 }

@@ -14,7 +14,7 @@ import {
 import { DeleteForever, Edit, Language } from '@mui/icons-material/';
 import useDeleteTeam from '../hooks/useDeleteTeam';
 
-function EachTeamListItem({ team, index, fetchTeams }) {
+function EachTeamListItem({ team, index, fetchTeams, handleDeletedTeam }) {
   const { id, name, website, crestUrl } = team;
   const { handleDelete, isDeleting, toggleDelete } = useDeleteTeam();
 
@@ -22,6 +22,7 @@ function EachTeamListItem({ team, index, fetchTeams }) {
 
   const handleClick = () => {
     handleDelete(id);
+    handleDeletedTeam(name);
     fetchTeams();
   };
 

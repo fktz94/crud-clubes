@@ -19,7 +19,6 @@ function Team() {
     navigate,
     toggleEdit,
     isEditing,
-    toggleDelete,
     handleSubmit,
     image,
     formData,
@@ -32,7 +31,7 @@ function Team() {
     isLoading
   } = useOneTeam();
 
-  const { isDeleting } = useDeleteTeam();
+  const { isDeleting, toggleDelete, handleDelete } = useDeleteTeam();
 
   return (
     <>
@@ -65,7 +64,7 @@ function Team() {
               {team.name}
             </Typography>
             {!isEditing
-              ? TeamData({ team, navigate, toggleEdit, isDeleting, toggleDelete })
+              ? TeamData({ team, navigate, toggleEdit, isDeleting, toggleDelete, handleDelete })
               : EditTeamForm({
                   team,
                   handleSubmit,

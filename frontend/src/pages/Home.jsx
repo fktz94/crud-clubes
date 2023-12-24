@@ -1,23 +1,19 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Box, CircularProgress } from '@mui/material';
+import { Alert, Box, CircularProgress, Dialog, DialogTitle } from '@mui/material';
 import TeamsTable from '../components/TeamTable';
 import useAllTeams from '../hooks/useAllTeams';
 
 function Home() {
-  // const location = useLocation();
-  // const [deletedTeam, setDeletedTeam] = useState(false);
-  const { isLoading, teams, fetchTeams } = useAllTeams();
-  // useEffect(() => {
-  // if (location.state?.name) {
-  //   setDeletedTeam(true);
-  //   setTimeout(() => {
-  //     location.state.name = undefined;
-  //     setDeletedTeam(false);
-  //   }, 1500);
-  // }
-  // }, [location.state, deletedTeam]);
+  const {
+    isLoading,
+    teams,
+    fetchTeams,
+    deletedTeam,
+    handleDeletedTeam,
+    handleCloseDeletedTeamAlert
+  } = useAllTeams();
 
-  const teamsQuantity = teams?.length;
+  // const teamsQuantity = teams?.length;
 
   return (
     <>
@@ -26,16 +22,18 @@ function Home() {
           <CircularProgress color="inherit" />
         </Box>
       )}
+      {deletedTeam && (
+        <Dialog open>
+          <Alert
+            variant="filled"
+            onClose={handleCloseDeletedTeamAlert}>{`${deletedTeam} ha sido eliminado`}</Alert>
+        </Dialog>
+      )}
       {teams && !isLoading && (
         <section className="flex flex-col gap-4 m-auto max-w-2xl">
-          <TeamsTable teams={teams} fetchTeams={fetchTeams} />
+          <TeamsTable teams={teams} fetchTeams={fetchTeams} handleDeletedTeam={handleDeletedTeam} />
         </section>
 
-        //   {deletedTeam && (
-        //     <div className="absolute px-4 py-2 z-50 rounded top-1/2 left-1/2 w-fit -translate-x-1/2 -translate-y-1/2 bg-black/90">
-        //       {location.state.name} ha sido eliminado
-        //     </div>
-        //   )}
         //   <div className="flex justify-between">
         //     <h4>
         //       Hay <b>{teamsQuantity}</b> equipos
