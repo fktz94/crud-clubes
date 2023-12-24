@@ -1,3 +1,80 @@
 {
-  "clubs": []
+  "clubs": [
+    {
+      "id": 356,
+      "area": {
+        "id": 2072,
+        "name": "England"
+      },
+      "name": "Sheffield United FC",
+      "shortName": "Sheffield Utd",
+      "tla": "SHE",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/en/9/9c/Sheffield_United_FC_logo.svg",
+      "address": "Bramall Lane Sheffield, Yorkshire S2 4SU",
+      "phone": "+44 (0871) 9951899",
+      "website": "http://www.sufc.co.uk",
+      "email": "info@sufc.co.uk",
+      "founded": null,
+      "clubColors": "Red / White / Black",
+      "venue": "Bramall Lane",
+      "lastUpdated": "2020-05-14T02:42:36Z"
+    },
+    {
+      "id": 397,
+      "area": {
+        "id": 2072,
+        "name": "England"
+      },
+      "name": "Brighton & Hove Albion FC",
+      "shortName": "Brighton Hove",
+      "tla": "BHA",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/en/f/fd/Brighton_%26_Hove_Albion_logo.svg",
+      "address": "44 North Road Brighton & Hove BN1 1YR",
+      "phone": "+44 (01273) 878288",
+      "website": "http://www.seagulls.co.uk",
+      "email": "seagulls@bhafc.co.uk",
+      "founded": 1898,
+      "clubColors": "Blue / White",
+      "venue": "The American Express Community Stadium",
+      "lastUpdated": "2020-05-14T02:43:01Z"
+    },
+    {
+      "id": 563,
+      "area": {
+        "id": 2072,
+        "name": "England"
+      },
+      "name": "West Ham United FC",
+      "shortName": "West Ham",
+      "tla": "WHU",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/en/c/c2/West_Ham_United_FC_logo.svg",
+      "address": "Green Street, Upton Park London E13 9AZ",
+      "phone": "+44 (020) 85482794",
+      "website": "http://www.whufc.com",
+      "email": "yourcomments@westhamunited.co.uk",
+      "founded": 1895,
+      "clubColors": "Claret / Sky Blue",
+      "venue": "London Stadium",
+      "lastUpdated": "2020-05-14T02:43:12Z"
+    },
+    {
+      "id": 1044,
+      "area": {
+        "id": 2072,
+        "name": "England"
+      },
+      "name": "AFC Bournemouth",
+      "shortName": "Bournemouth",
+      "tla": "BOU",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/en/e/e5/AFC_Bournemouth_%282013%29.svg",
+      "address": "Dean Court, Kings Park Bournemouth BH7 7AF",
+      "phone": "+44 (01202) 726300",
+      "website": "http://www.afcb.co.uk",
+      "email": "admin@afcb.co.uk",
+      "founded": 1890,
+      "clubColors": "Red / Black",
+      "venue": "Vitality Stadium",
+      "lastUpdated": "2020-05-14T02:43:14Z"
+    }
+  ]
 }

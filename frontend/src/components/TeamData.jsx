@@ -16,8 +16,8 @@ function TeamData({ team, navigate, toggleEdit, isDeleting, toggleDelete, handle
   const { id, name, founded, clubColors, venue, address, phone, tla } = team;
 
   const deleteTeam = () => {
-    handleDelete(id, name);
-    navigate('/');
+    handleDelete(id);
+    navigate('/', { state: { deletedTeam: name } });
   };
 
   const info = (dataInfo) => {

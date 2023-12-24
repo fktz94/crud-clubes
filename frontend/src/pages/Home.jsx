@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Alert, Box, CircularProgress, Dialog, DialogTitle } from '@mui/material';
+import { Alert, Box, CircularProgress, Dialog } from '@mui/material';
 import TeamsTable from '../components/TeamTable';
 import useAllTeams from '../hooks/useAllTeams';
 

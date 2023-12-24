@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function useAllTeams() {
   const [teams, setTeams] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [deletedTeam, setDeletedTeam] = useState(undefined);
+
+  const location = useLocation();
 
   const fakeRest = () =>
     new Promise((res) => {
@@ -27,13 +30,19 @@ export default function useAllTeams() {
       throw new Error(error.message || 'data not found');
     } finally {
       setIsLoading(false);
-      setTimeout(handleCloseDeletedTeamAlert, 4000);
+      setTimeout(handleCloseDeletedTeamAlert, 3000);
     }
   }, []);
 
   useEffect(() => {
+    if (location.state?.deletedTeam) setDeletedTeam(location.state.deletedTeam);
+
     fetchTeams();
-  }, [fetchTeams]);
+
+    setTimeout(handleCloseDeletedTeamAlert, 3000);
+
+    return () => window.history.replaceState({}, document.title);
+  }, [fetchTeams, location.state]);
 
   return {
     isLoading,
