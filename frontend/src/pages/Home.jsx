@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Alert, Box, Button, CircularProgress, Dialog, Typography } from '@mui/material';
+import { Alert, Box, Button, CircularProgress, Container, Dialog, Typography } from '@mui/material';
 import TeamsTable from '../components/TeamTable';
 import useAllTeams from '../hooks/useAllTeams';
 
@@ -14,6 +14,21 @@ function Home() {
   } = useAllTeams();
 
   const teamsQuantity = teams?.length;
+
+  if (teams?.length === 0) {
+    return (
+      <Container>
+        <Box display="flex" flexDirection="column" marginBlock={4} gap={4}>
+          <Typography variant="h4" alignSelf="center">
+            No hay equipos!
+          </Typography>
+          <Button variant="outlined" sx={{ fontSize: '1.2rem', paddingBlock: 6 }}>
+            <Link to="/new-team">Agrega el primer equipo</Link>
+          </Button>
+        </Box>
+      </Container>
+    );
+  }
 
   return (
     <>
@@ -33,15 +48,9 @@ function Home() {
       {teams && !isLoading && (
         <>
           <Box display="flex" marginBlock={2} justifyContent="space-between">
-            {!teamsQuantity ? (
-              <Typography component="h4" alignSelf="center">
-                No hay equipos
-              </Typography>
-            ) : (
-              <Typography component="h4" alignSelf="center">
-                Hay <b>{teamsQuantity}</b> {teamsQuantity === 1 ? 'equipo' : 'equipos'}
-              </Typography>
-            )}
+            <Typography component="h4" alignSelf="center">
+              Hay <b>{teamsQuantity}</b> {teamsQuantity === 1 ? 'equipo' : 'equipos'}
+            </Typography>
             <Button variant="outlined">
               <Link to="/new-team">Agregar un nuevo equipo</Link>
             </Button>

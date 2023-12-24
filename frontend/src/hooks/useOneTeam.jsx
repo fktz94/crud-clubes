@@ -25,7 +25,7 @@ export default function useOneTeam() {
     venue: '',
     address: '',
     phone: '',
-    crestUrl: undefined
+    crestUrl: ''
   });
 
   const [success, setSuccess] = useState({
