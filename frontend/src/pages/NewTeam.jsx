@@ -15,7 +15,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { CloudUpload, DeleteForever } from '@mui/icons-material';
+import { CloudUpload, DeleteForever, ChangeCircleOutlined } from '@mui/icons-material';
 import useOneTeam from '../hooks/useOneTeam';
 
 function FileInputElement({ formData, handleDeleteFile, handleInput, name }) {
@@ -78,12 +78,16 @@ export default function NewTeamForm() {
     success,
     formData,
     handleDeleteFile,
-    handleSubmit
+    handleSubmit,
+    removePrevFileData
   } = useOneTeam();
 
-  const [fileIsLink, setFileIsLink] = useState(true);
+  const [fileIsLink, setFileIsLink] = useState(false);
 
-  const handleFileLink = () => setFileIsLink(!fileIsLink);
+  const handleFileLink = () => {
+    removePrevFileData();
+    setFileIsLink(!fileIsLink);
+  };
 
   const properties = [
     {
@@ -120,11 +124,16 @@ export default function NewTeamForm() {
       name: 'phone',
       placeholder: '+44 (0871) 9841955',
       text: 'Teléfono:'
+    },
+    {
+      name: 'website',
+      placeholder: 'http://www.chelseafc.com',
+      text: 'Website:'
     }
   ];
 
   return (
-    <Container>
+    <Container maxWidth="sm">
       <Typography textAlign="center" marginBottom={2} component="h4" variant="h4">
         Crear un nuevo equipo
       </Typography>
@@ -193,12 +202,13 @@ export default function NewTeamForm() {
               success={success}
               formData={formData}
               name="crestUrl"
-              placeholder="Dirección de la imágen"
+              placeholder="https://wikimedia.org/Chelsea_FC.svg"
               text="Logo del club"
             />
           )}
           <Button
             onClick={handleFileLink}
+            startIcon={<ChangeCircleOutlined />}
             variant="outlined"
             sx={{ alignSelf: fileIsLink ? 'end' : '' }}>
             {fileIsLink ? 'Archivo' : 'URL'}

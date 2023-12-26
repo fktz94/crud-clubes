@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Alert, Box, Button, CircularProgress, Container, Dialog, Typography } from '@mui/material';
 import TeamsTable from '../components/TeamTable';
 import useAllTeams from '../hooks/useAllTeams';
@@ -47,7 +47,12 @@ function Home() {
 
       {teams && !isLoading && (
         <>
-          <Box display="flex" marginBlock={2} justifyContent="space-between">
+          <Box
+            display="flex"
+            maxWidth="42rem"
+            marginInline="auto"
+            marginBlock={2}
+            justifyContent="space-between">
             <Typography component="h4" alignSelf="center">
               Hay <b>{teamsQuantity}</b> {teamsQuantity === 1 ? 'equipo' : 'equipos'}
             </Typography>

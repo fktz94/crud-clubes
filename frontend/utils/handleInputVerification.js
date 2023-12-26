@@ -31,9 +31,9 @@ export default function handleInputVerification(name, data, value, setError, set
   }
 
   // CLUB ABREVIATION verification
-  if (name === 'tla' && data && (!data.match(/[A-Za-z]/) || value.length > 3)) return false;
+  if (name === 'tla' && data && (!data.match(/[A-Za-z]/) || value.length > 5)) return false;
 
-  if (name === 'tla' && value.length === 3) {
+  if (name === 'tla' && value.length >= 3 && value.length <= 5) {
     setSuccess((prev) => {
       return { ...prev, [name]: true };
     });

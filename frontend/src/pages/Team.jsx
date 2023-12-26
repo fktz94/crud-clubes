@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -28,11 +29,18 @@ function Team() {
     handleDeleteFile,
     toggleUpdate,
     isUpdating,
-    isLoading
+    isLoading,
+    removePrevFileData
   } = useOneTeam();
 
   const { isDeleting, toggleDelete, handleDelete } = useDeleteTeam();
 
+  const [fileIsLink, setFileIsLink] = useState(false);
+
+  const handleFileLink = () => {
+    removePrevFileData();
+    setFileIsLink(!fileIsLink);
+  };
   return (
     <>
       {isLoading && (
@@ -75,7 +83,9 @@ function Team() {
                   success,
                   handleDeleteFile,
                   toggleUpdate,
-                  isUpdating
+                  isUpdating,
+                  fileIsLink,
+                  handleFileLink
                 })}
           </Card>
         </Container>

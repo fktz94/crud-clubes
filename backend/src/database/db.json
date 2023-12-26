@@ -379,6 +379,82 @@
       "clubColors": "Red / Black",
       "venue": "Vitality Stadium",
       "lastUpdated": "2020-05-14T02:43:14Z"
+    },
+    {
+      "id": 332,
+      "area": {
+        "id": 2072,
+        "name": "England"
+      },
+      "name": "Boca Juniors",
+      "shortName": null,
+      "tla": "CABJ",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/BocaJuniors.png",
+      "address": "Brandsen 805 La Boca",
+      "phone": null,
+      "website": "https://www.bocajuniors.com.ar/",
+      "email": null,
+      "founded": 1905,
+      "clubColors": "Azul / Oro",
+      "venue": "La Bombonera",
+      "lastUpdated": "2023-12-24T19:43:11.236Z"
+    },
+    {
+      "id": 269,
+      "area": {
+        "id": 2072,
+        "name": "England"
+      },
+      "name": "Gimnasia y Esgrima de La Plata",
+      "shortName": null,
+      "tla": "GELP",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Escudo_GELP.svg",
+      "address": "Avenida 60 y calle 118, La Plata",
+      "phone": null,
+      "website": "https://www.gimnasia.org.ar/",
+      "email": null,
+      "founded": 1887,
+      "clubColors": "Azul / Blanco",
+      "venue": "Juan Carmelo Zerillo",
+      "lastUpdated": "2023-12-24T22:31:20.990Z"
+    },
+    {
+      "id": 81,
+      "area": {
+        "id": 2072,
+        "name": "England"
+      },
+      "name": "Estudiantes de Olavarria",
+      "shortName": null,
+      "tla": "CAE",
+      "crestUrl": "2fe4128e64d929296e311c44a1170bd4",
+      "address": null,
+      "phone": null,
+      "website": "https://www.caeolavarria.com/",
+      "email": null,
+      "founded": 1912,
+      "clubColors": "Blanco / Negro",
+      "venue": "Parque Carlos Guerrero",
+      "lastUpdated": "2023-12-26T19:30:17.568Z"
+    },
+    {
+      "id": 295,
+      "area": {
+        "id": 2072,
+        "name": "England"
+      },
+      "name": "11231231",
+      "shortName": null,
+      "tla": null,
+      "crestUrl": "b3cad38287dc99b7f15558aca4d467bd",
+      "address": null,
+      "phone": null,
+      "website": null,
+      "email": null,
+      "founded": null,
+      "clubColors": null,
+      "venue": null,
+      "lastUpdated": "2023-12-26T19:36:39.908Z"
     }
   ]
 }

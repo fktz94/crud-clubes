@@ -25,6 +25,7 @@ export default function useOneTeam() {
     venue: '',
     address: '',
     phone: '',
+    website: '',
     crestUrl: ''
   });
 
@@ -35,6 +36,7 @@ export default function useOneTeam() {
     clubColors: false,
     venue: false,
     address: false,
+    website: false,
     file: false
   });
 
@@ -46,8 +48,14 @@ export default function useOneTeam() {
     venue: '',
     address: '',
     phone: '',
+    website: '',
     file: ''
   });
+
+  const removePrevFileData = () =>
+    setFormData((prev) => {
+      return { ...prev, crestUrl: '' };
+    });
 
   const handleInput = (e) => {
     const {
@@ -155,7 +163,7 @@ export default function useOneTeam() {
 
   const imgSrc = team?.crestUrl?.includes('http')
     ? team?.crestUrl
-    : `http://localhost:8080/${team?.crestUrl}`;
+    : `http://localhost:8080/img/${team?.crestUrl}`;
 
   const noImg =
     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
@@ -176,6 +184,7 @@ export default function useOneTeam() {
     handleDeleteFile,
     toggleUpdate,
     isUpdating,
-    isLoading
+    isLoading,
+    removePrevFileData
   };
 }

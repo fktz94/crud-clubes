@@ -11,12 +11,12 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { CloudUpload, DeleteForever } from '@mui/icons-material';
+import { CloudUpload, DeleteForever, ChangeCircleOutlined } from '@mui/icons-material';
 
 function FileInputElement({ formData, handleDeleteFile, handleInput, name }) {
   return (
-    <Box display="flex" alignItems="center" paddingY={3}>
-      <Typography color="grey">Nuevo logo: </Typography>
+    <Box display="flex" flexGrow={1} alignItems="center" paddingY={1}>
+      <Typography color="grey">Logo del club:</Typography>
       <Box flexGrow={1} display="flex" justifyContent="center">
         {formData.crestUrl ? (
           <>
@@ -59,7 +59,7 @@ function InputElement({ name, placeholder, text, handleInput, formData, error, s
       helperText={error[name]}
       color={success[name] ? 'success' : 'primary'}
       onChange={handleInput}
-      sx={{ input: { color: 'white' }, label: { color: 'gray' } }}
+      sx={{ input: { color: 'white' }, label: { color: 'gray' }, flexGrow: 1 }}
     />
   );
 }
@@ -74,9 +74,11 @@ function EditTeamForm({
   success,
   handleDeleteFile,
   toggleUpdate,
-  isUpdating
+  isUpdating,
+  fileIsLink,
+  handleFileLink
 }) {
-  const { name, tla, founded, clubColors, venue, address, phone } = team;
+  const { name, tla, founded, clubColors, venue, address, phone, website } = team;
   const properties = [
     {
       name: 'name',
@@ -112,6 +114,11 @@ function EditTeamForm({
       name: 'phone',
       placeholder: phone,
       text: 'Teléfono:'
+    },
+    {
+      name: 'website',
+      placeholder: website,
+      text: 'Website:'
     }
   ];
 
@@ -165,14 +172,35 @@ function EditTeamForm({
               />
             );
           })}
-
-          <FileInputElement
-            formData={formData}
-            handleDeleteFile={handleDeleteFile}
-            handleInput={handleInput}
-            name="crestUrl"
-          />
         </Stack>
+
+        <Box alignItems="center" gap={2} display="flex">
+          {!fileIsLink ? (
+            <FileInputElement
+              formData={formData}
+              handleDeleteFile={handleDeleteFile}
+              handleInput={handleInput}
+              name="crestUrl"
+            />
+          ) : (
+            <InputElement
+              handleInput={handleInput}
+              error={error}
+              success={success}
+              formData={formData}
+              name="crestUrl"
+              placeholder="https://wikimedia.org/Chelsea_FC.svg"
+              text="Logo del club"
+            />
+          )}
+          <Button
+            onClick={handleFileLink}
+            startIcon={<ChangeCircleOutlined />}
+            variant="outlined"
+            sx={{ alignSelf: fileIsLink ? 'end' : '' }}>
+            {fileIsLink ? 'Archivo' : 'URL'}
+          </Button>
+        </Box>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4, mt: 4, mb: 1 }}>
           <Button variant="outlined" color="success" onClick={toggleUpdate}>
