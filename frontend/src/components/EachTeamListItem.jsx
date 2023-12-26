@@ -18,6 +18,8 @@ function EachTeamListItem({ team, index, fetchTeams, handleDeletedTeam }) {
   const { id, name, website, crestUrl } = team;
   const { handleDelete, isDeleting, toggleDelete } = useDeleteTeam();
 
+  const imgSrc = crestUrl.includes('http') ? crestUrl : `http://localhost:8080/img/${crestUrl}`;
+
   const backgroundColor = index % 2 !== 0 ? 'text.disabled' : 'text.primary';
 
   const handleClick = () => {
@@ -51,7 +53,7 @@ function EachTeamListItem({ team, index, fetchTeams, handleDeletedTeam }) {
       </Dialog>
       <ListItem key={id} sx={{ bgcolor: backgroundColor, alignItems: 'center' }}>
         <ListItemAvatar>
-          <Avatar src={crestUrl} />
+          <Avatar src={imgSrc} />
         </ListItemAvatar>
         <ListItemText primary={name} sx={{ width: '60%', minWidth: 'content' }} />
         <div className="flex grow justify-end gap-2">

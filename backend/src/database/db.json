@@ -419,7 +419,7 @@
       "lastUpdated": "2023-12-24T22:31:20.990Z"
     },
     {
-      "id": 81,
+      "id": 425,
       "area": {
         "id": 2072,
         "name": "England"
@@ -427,7 +427,7 @@
       "name": "Estudiantes de Olavarria",
       "shortName": null,
       "tla": "CAE",
-      "crestUrl": "2fe4128e64d929296e311c44a1170bd4",
+      "crestUrl": "0cd7b2835323ab2317413109d3a5242b",
       "address": null,
       "phone": null,
       "website": "https://www.caeolavarria.com/",
@@ -435,26 +435,7 @@
       "founded": 1912,
       "clubColors": "Blanco / Negro",
       "venue": "Parque Carlos Guerrero",
-      "lastUpdated": "2023-12-26T19:30:17.568Z"
-    },
-    {
-      "id": 295,
-      "area": {
-        "id": 2072,
-        "name": "England"
-      },
-      "name": "11231231",
-      "shortName": null,
-      "tla": null,
-      "crestUrl": "b3cad38287dc99b7f15558aca4d467bd",
-      "address": null,
-      "phone": null,
-      "website": null,
-      "email": null,
-      "founded": null,
-      "clubColors": null,
-      "venue": null,
-      "lastUpdated": "2023-12-26T19:36:39.908Z"
+      "lastUpdated": "2023-12-26T19:49:08.062Z"
     }
   ]
 }
