@@ -20,7 +20,7 @@ function newClubEntity(newClub) {
     name,
     shortName: shortName || null,
     tla: tla || null,
-    crestUrl: file ? file.path : null,
+    crestUrl: file ? file.filename : null,
     address: address || null,
     phone: phone || null,
     website: website || null,

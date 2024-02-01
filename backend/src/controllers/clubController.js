@@ -89,7 +89,7 @@ const updateOneClub = (req, res) => {
   }
 
   const allChanges = file
-    ? { ...validated.data, crestUrl: file.path }
+    ? { ...validated.data, crestUrl: file.filename }
     : validated.data;
 
   try {
